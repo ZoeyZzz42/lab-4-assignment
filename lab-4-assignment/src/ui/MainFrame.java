@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author zoey42
@@ -89,7 +91,10 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formBtnActionPerformed
-        FormPanel newFormPanel = new FormPanel();        // TODO add your handling code here:
+        FormPanel newFormPanel = new FormPanel();
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+        bottomPanel.add(newFormPanel);
+        layout.next(bottomPanel);
     }//GEN-LAST:event_formBtnActionPerformed
 
     /**
