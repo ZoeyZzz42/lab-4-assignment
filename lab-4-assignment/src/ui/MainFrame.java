@@ -71,25 +71,14 @@ public class MainFrame extends javax.swing.JFrame {
         SplitPane.setTopComponent(topPanel);
 
         bottomPanel.setPreferredSize(new java.awt.Dimension(700, 500));
-
-        javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
-        bottomPanel.setLayout(bottomPanelLayout);
-        bottomPanelLayout.setHorizontalGroup(
-            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
-        bottomPanelLayout.setVerticalGroup(
-            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
-        );
-
+        bottomPanel.setLayout(new java.awt.CardLayout());
         SplitPane.setRightComponent(bottomPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(SplitPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,8 +89,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formBtnActionPerformed
-        FormPanel newFormPanel = new FormPanel();
-        SplitPane.setBottomComponent(newFormPanel);        // TODO add your handling code here:
+        FormPanel newFormPanel = new FormPanel();        // TODO add your handling code here:
     }//GEN-LAST:event_formBtnActionPerformed
 
     /**
