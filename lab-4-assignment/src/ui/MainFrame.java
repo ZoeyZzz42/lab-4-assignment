@@ -48,6 +48,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         viewBtn.setText("View");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
@@ -96,6 +101,13 @@ public class MainFrame extends javax.swing.JFrame {
         bottomPanel.add(newFormPanel);
         layout.next(bottomPanel);
     }//GEN-LAST:event_formBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        ViewPanel newViewPanel = new ViewPanel();   
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+        bottomPanel.add(newViewPanel);
+        layout.next(bottomPanel);
+    }//GEN-LAST:event_viewBtnActionPerformed
 
     /**
      * @param args the command line arguments
