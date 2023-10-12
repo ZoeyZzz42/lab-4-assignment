@@ -37,6 +37,7 @@ public class ViewPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        genderBtnGroup = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         firstNameLabel = new javax.swing.JLabel();
@@ -82,11 +83,17 @@ public class ViewPanel extends javax.swing.JPanel {
 
         typeLabel.setText("Type*");
 
+        genderBtnGroup.add(femaleBtn);
         femaleBtn.setText("Female");
+        femaleBtn.setEnabled(false);
 
+        genderBtnGroup.add(notSayBtn);
         notSayBtn.setText("Prefer not to state");
+        notSayBtn.setEnabled(false);
 
+        genderBtnGroup.add(maleBtn);
         maleBtn.setText("Male");
+        maleBtn.setEnabled(false);
 
         genderLabel.setText("Gender*");
 
@@ -213,6 +220,7 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton femaleBtn;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTxtField;
+    private javax.swing.ButtonGroup genderBtnGroup;
     private javax.swing.JLabel genderLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lastNameLabel;
