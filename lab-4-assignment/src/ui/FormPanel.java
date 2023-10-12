@@ -282,6 +282,8 @@ public class FormPanel extends javax.swing.JPanel {
         "Last Name: " + lastName + "\n" +
         "Age: " + age + "\n" +
         "Email: " + email + "\n" +
+        "Type" + selectedType + "\n" +
+        "Gender" + selectedGender + "\n" +
         "Message: " + textBoxMsg;
 
         if (photoFilePath != null) {
