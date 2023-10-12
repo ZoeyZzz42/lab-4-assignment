@@ -54,6 +54,10 @@ public class ViewPanel extends javax.swing.JPanel {
         photoDisplayLabel = new javax.swing.JLabel();
         typeLabel = new javax.swing.JLabel();
         displayComboBox = new javax.swing.JComboBox<>();
+        femaleBtn = new javax.swing.JRadioButton();
+        notSayBtn = new javax.swing.JRadioButton();
+        maleBtn = new javax.swing.JRadioButton();
+        genderLabel = new javax.swing.JLabel();
 
         mainPanel.setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -78,24 +82,38 @@ public class ViewPanel extends javax.swing.JPanel {
 
         typeLabel.setText("Type*");
 
+        femaleBtn.setText("Female");
+
+        notSayBtn.setText("Prefer not to state");
+
+        maleBtn.setText("Male");
+
+        genderLabel.setText("Gender*");
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(firstNameLabel)
+                                    .addComponent(emailLabel)
+                                    .addComponent(lastNameLabel)
+                                    .addComponent(ageLabel)
+                                    .addComponent(photoLabel))
+                                .addGap(107, 107, 107))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(typeLabel)
+                                .addGap(139, 139, 139))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(firstNameLabel)
-                            .addComponent(emailLabel)
-                            .addComponent(lastNameLabel)
-                            .addComponent(ageLabel)
-                            .addComponent(photoLabel))
-                        .addGap(107, 107, 107))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(typeLabel)
+                            .addComponent(genderLabel)
                             .addComponent(msgLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +126,13 @@ public class ViewPanel extends javax.swing.JPanel {
                         .addComponent(emailTxtField, javax.swing.GroupLayout.Alignment.LEADING))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(photoDisplayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(photoDisplayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(maleBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(femaleBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(notSayBtn)))
                 .addContainerGap(110, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -143,11 +167,17 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(typeLabel)
                     .addComponent(displayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(genderLabel)
+                    .addComponent(maleBtn)
+                    .addComponent(femaleBtn)
+                    .addComponent(notSayBtn))
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(msgLabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -160,7 +190,7 @@ public class ViewPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 506, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -180,13 +210,17 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> displayComboBox;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTxtField;
+    private javax.swing.JRadioButton femaleBtn;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTxtField;
+    private javax.swing.JLabel genderLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTxtField;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JRadioButton maleBtn;
     private javax.swing.JLabel msgLabel;
+    private javax.swing.JRadioButton notSayBtn;
     private javax.swing.JLabel photoDisplayLabel;
     private javax.swing.JLabel photoLabel;
     private javax.swing.JTextArea textArea;
@@ -201,12 +235,23 @@ public class ViewPanel extends javax.swing.JPanel {
         emailTxtField.setText(newUser.getEmail());
         textArea.setText(newUser.getTextBoxMsg());
         displayComboBox.addItem(newUser.getPatientType());
+        setGenderRadioButton(newUser.getGender());
         
         String photoFilePath = newUser.getPhotoFilePath();
         if (photoFilePath != null) {
             ImageIcon photoIcon = new ImageIcon(photoFilePath);
             ImageIcon scaledPhoto = new ImageIcon(photoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
             photoDisplayLabel.setIcon(scaledPhoto);
+        }
+    }
+    
+    public void setGenderRadioButton(String gender) {
+        switch (gender) {
+            case "Male" -> maleBtn.setSelected(true);
+            case "Female" -> femaleBtn.setSelected(false);
+            case "Prefer not to state" -> notSayBtn.setSelected(true);
+            default -> {
+            }
         }
     }
 }

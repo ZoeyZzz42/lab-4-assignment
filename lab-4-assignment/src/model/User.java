@@ -16,6 +16,15 @@ public class User {
     private String textBoxMsg;
     private String photoFilePath;
     private String patientType;
+    private String Gender;
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String Gender) {
+        this.Gender = Gender;
+    }
 
     public String getPatientType() {
         return patientType;

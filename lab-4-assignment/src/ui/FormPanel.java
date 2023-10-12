@@ -46,6 +46,7 @@ public class FormPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        genderBtnGroup = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         firstNameLabel = new javax.swing.JLabel();
@@ -64,6 +65,10 @@ public class FormPanel extends javax.swing.JPanel {
         msgLabel = new javax.swing.JLabel();
         typeLabel = new javax.swing.JLabel();
         typeComboBox = new javax.swing.JComboBox<>();
+        maleBtn = new javax.swing.JRadioButton();
+        genderLabel = new javax.swing.JLabel();
+        femaleBtn = new javax.swing.JRadioButton();
+        notSayBtn = new javax.swing.JRadioButton();
 
         mainPanel.setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -105,6 +110,17 @@ public class FormPanel extends javax.swing.JPanel {
 
         typeComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        genderBtnGroup.add(maleBtn);
+        maleBtn.setText("Male");
+
+        genderLabel.setText("Gender*");
+
+        genderBtnGroup.add(femaleBtn);
+        femaleBtn.setText("Female");
+
+        genderBtnGroup.add(notSayBtn);
+        notSayBtn.setText("Prefer not to state");
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -129,16 +145,23 @@ public class FormPanel extends javax.swing.JPanel {
                                 .addComponent(lastNameLabel)
                                 .addComponent(ageLabel)
                                 .addComponent(photoLabel)
-                                .addComponent(typeLabel))
+                                .addComponent(typeLabel)
+                                .addComponent(genderLabel))
                             .addGap(107, 107, 107)
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(firstNameTxtField)
-                                .addComponent(lastNameTxtField)
-                                .addComponent(ageTxtField)
-                                .addComponent(emailTxtField)
-                                .addComponent(uploadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                                .addComponent(typeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(4, 4, 4))))
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(firstNameTxtField)
+                                    .addComponent(lastNameTxtField)
+                                    .addComponent(ageTxtField)
+                                    .addComponent(emailTxtField)
+                                    .addComponent(uploadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                                    .addComponent(typeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(mainPanelLayout.createSequentialGroup()
+                                    .addComponent(maleBtn)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(femaleBtn)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(notSayBtn))))))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -169,7 +192,13 @@ public class FormPanel extends javax.swing.JPanel {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(typeLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maleBtn)
+                    .addComponent(genderLabel)
+                    .addComponent(femaleBtn)
+                    .addComponent(notSayBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(msgLabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,20 +224,23 @@ public class FormPanel extends javax.swing.JPanel {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         User newUser = new User();
-        newUser.setFirstName(firstNameTxtField.getText());
-        newUser.setLastName(lastNameTxtField.getText());
-        newUser.setAge(ageTxtField.getText());
-        newUser.setEmail(emailTxtField.getText());
-        newUser.setTextBoxMsg(textArea.getText());
-        newUser.setPhotoFilePath(photoFilePath);
-        newUser.setPatientType((String) typeComboBox.getSelectedItem());
-
+       
         String firstName = firstNameTxtField.getText();
         String lastName = lastNameTxtField.getText();
         String age = ageTxtField.getText();
         String email = emailTxtField.getText();
         String textBoxMsg = textArea.getText();
         String selectedType = (String) typeComboBox.getSelectedItem();
+        String selectedGender = getSelectedGender();
+
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setAge(age);
+        newUser.setEmail(email);
+        newUser.setTextBoxMsg(textBoxMsg);
+        newUser.setPhotoFilePath(photoFilePath);
+        newUser.setPatientType(selectedType);
+        newUser.setGender(selectedGender);
 
         if (firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all required fields.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -265,13 +297,15 @@ public class FormPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, message, "User Registration Successful", JOptionPane.INFORMATION_MESSAGE);
         }
         
+        
+        
         ViewPanel newViewPanel = new ViewPanel(newUser);   
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
         bottomPanel.add(newViewPanel);
         layout.next(bottomPanel);
     }//GEN-LAST:event_submitBtnActionPerformed
 
-        private boolean isValidEmail(String email) {
+    private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailRegex);
     }
@@ -318,19 +352,35 @@ public class FormPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_uploadBtnActionPerformed
 
+    private String getSelectedGender() {
+        if (maleBtn.isSelected()) {
+            return "Male";
+        } else if (femaleBtn.isSelected()) {
+            return "Female";
+        } else if (notSayBtn.isSelected()) {
+            return "Prefer not to state";
+        } else {
+            return null;
+        }
+    }   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ageLabel;
     private javax.swing.JTextField ageTxtField;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTxtField;
+    private javax.swing.JRadioButton femaleBtn;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTxtField;
+    private javax.swing.ButtonGroup genderBtnGroup;
+    private javax.swing.JLabel genderLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTxtField;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JRadioButton maleBtn;
     private javax.swing.JLabel msgLabel;
+    private javax.swing.JRadioButton notSayBtn;
     private javax.swing.JLabel photoLabel;
     private javax.swing.JButton submitBtn;
     private javax.swing.JTextArea textArea;
