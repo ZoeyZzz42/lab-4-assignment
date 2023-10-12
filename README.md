@@ -13,6 +13,7 @@
 
 ## View Panel
 <img width="700" alt="image" src="https://github.com/ZoeyZzz42/lab-4-assignment/assets/145056570/314b07e1-dc19-4942-95e4-d7e88fae644c">
+
 *the dropdown menu only has one item, which is the type the user selected on form panel*
 
 ## Successful photo upload
