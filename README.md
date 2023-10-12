@@ -17,9 +17,10 @@
 <img width="799" alt="image" src="https://github.com/ZoeyZzz42/lab-3-assignment/assets/145056570/d558d421-8216-40aa-8626-86d051d92b07">
 
 ## Error pop-up when required fields are not filled - all not filled; part not filled
-<img width="1129" alt="image" src="https://github.com/ZoeyZzz42/lab-3-assignment/assets/145056570/1fcb0b2b-96f5-4c8c-9bb8-5a66e44e682b">
-<img width="1129" alt="image" src="https://github.com/ZoeyZzz42/lab-3-assignment/assets/145056570/c7a57995-d7d6-4288-9db4-598d069c263b">
+<img width="894" alt="image" src="https://github.com/ZoeyZzz42/lab-4-assignment/assets/145056570/f6f623df-91c6-4d01-bf57-7224d325d3d2">
+<img width="895" alt="image" src="https://github.com/ZoeyZzz42/lab-4-assignment/assets/145056570/d837bcd9-e933-48f7-817f-59cd25256155">
 
+*Below I use the screenshot from the last assignment since the validation logic/codes are the same*
 ## Error pop-up when first name/last name is not eligible
 <img width="1163" alt="image" src="https://github.com/ZoeyZzz42/lab-3-assignment/assets/145056570/9a3c825e-5a18-4d9f-a80a-0e4e693b2fe4">
 <img width="1080" alt="image" src="https://github.com/ZoeyZzz42/lab-3-assignment/assets/145056570/6a7c56ef-f485-4cd3-91ed-b23dd7d55643">
