@@ -256,7 +256,7 @@ public class ViewPanel extends javax.swing.JPanel {
     public void setGenderRadioButton(String gender) {
         switch (gender) {
             case "Male" -> maleBtn.setSelected(true);
-            case "Female" -> femaleBtn.setSelected(false);
+            case "Female" -> femaleBtn.setSelected(true);
             case "Prefer not to state" -> notSayBtn.setSelected(true);
             default -> {
             }
