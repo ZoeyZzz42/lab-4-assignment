@@ -8,6 +8,7 @@
 
 ## Successful submission pop-up with photo uploaded
 <img width="774" alt="image" src="https://github.com/ZoeyZzz42/lab-4-assignment/assets/145056570/4baf6501-15b2-4e79-bbd0-98b850364e43">
+
 *when there's no message written, the message line will just be blank*
 
 ## View Panel
