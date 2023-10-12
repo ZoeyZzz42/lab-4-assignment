@@ -25,9 +25,9 @@ public class FormPanel extends javax.swing.JPanel {
      * Creates new form FormPanel
      */
     private JPanel bottomPanel;
-    public FormPanel(JPanel bottomPanel) {
+    public FormPanel(JPanel inputPanel) {
         initComponents();
-        this.bottomPanel = bottomPanel;
+        this.bottomPanel = inputPanel;
     }
 
     private FormPanel() {
@@ -178,6 +178,13 @@ public class FormPanel extends javax.swing.JPanel {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         User newUser = new User();
+        newUser.setFirstName(firstNameTxtField.getText());
+        newUser.setLastName(lastNameTxtField.getText());
+        newUser.setAge(ageTxtField.getText());
+        newUser.setEmail(emailTxtField.getText());
+        newUser.setTextBoxMsg(textArea.getText());
+        newUser.setPhotoFilePath(photoFilePath);
+
         String firstName = firstNameTxtField.getText();
         String lastName = lastNameTxtField.getText();
         String age = ageTxtField.getText();

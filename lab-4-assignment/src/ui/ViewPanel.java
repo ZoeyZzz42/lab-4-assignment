@@ -5,11 +5,7 @@
 package ui;
 
 import java.awt.Image;
-import java.io.File;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import model.User;
 
 /**
@@ -17,7 +13,6 @@ import model.User;
  * @author zoey42
  */
 public class ViewPanel extends javax.swing.JPanel {
-    private String photoFilePath;
 
     /**
      * Creates new form FormPanel
@@ -26,6 +21,7 @@ public class ViewPanel extends javax.swing.JPanel {
     public ViewPanel(User newUser) {
         initComponents();
         this.newUser = newUser;
+        populateData();
     }
 
     private ViewPanel() {
@@ -51,12 +47,11 @@ public class ViewPanel extends javax.swing.JPanel {
         lastNameTxtField = new javax.swing.JTextField();
         ageTxtField = new javax.swing.JTextField();
         emailTxtField = new javax.swing.JTextField();
-        submitBtn = new javax.swing.JButton();
         photoLabel = new javax.swing.JLabel();
-        uploadBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
         msgLabel = new javax.swing.JLabel();
+        photoDisplayLabel = new javax.swing.JLabel();
 
         mainPanel.setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -71,22 +66,7 @@ public class ViewPanel extends javax.swing.JPanel {
 
         emailLabel.setText("Email*");
 
-        submitBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        submitBtn.setText("Submit");
-        submitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBtnActionPerformed(evt);
-            }
-        });
-
         photoLabel.setText("Photo");
-
-        uploadBtn.setText("Upload");
-        uploadBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadBtnActionPerformed(evt);
-            }
-        });
 
         textArea.setColumns(20);
         textArea.setRows(5);
@@ -101,14 +81,9 @@ public class ViewPanel extends javax.swing.JPanel {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(mainPanelLayout.createSequentialGroup()
-                            .addComponent(msgLabel)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(firstNameLabel)
@@ -116,14 +91,21 @@ public class ViewPanel extends javax.swing.JPanel {
                                     .addComponent(lastNameLabel)
                                     .addComponent(ageLabel)
                                     .addComponent(photoLabel))
-                                .addGap(107, 107, 107)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(firstNameTxtField)
-                                    .addComponent(lastNameTxtField)
-                                    .addComponent(ageTxtField)
-                                    .addComponent(emailTxtField)
-                                    .addComponent(uploadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))))))
-                .addContainerGap(125, Short.MAX_VALUE))
+                                .addGap(107, 107, 107))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(msgLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(firstNameTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                                .addComponent(lastNameTxtField)
+                                .addComponent(ageTxtField)
+                                .addComponent(emailTxtField))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(photoDisplayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,17 +127,15 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(emailLabel)
                     .addComponent(emailTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(photoLabel)
-                    .addComponent(uploadBtn))
-                .addGap(18, 18, 18)
+                    .addComponent(photoDisplayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(msgLabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -171,84 +151,7 @@ public class ViewPanel extends javax.swing.JPanel {
             .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-        String firstName = firstNameTxtField.getText();
-        String lastName = lastNameTxtField.getText();
-        String age = ageTxtField.getText();
-        String email = emailTxtField.getText();
-        String textBoxMsg = textArea.getText();
-
-        if (firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || email.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill in all required fields.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!isValidName(firstName)) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid first name.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!isValidName(lastName)) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid last name.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int ageInt;
-        try {
-            ageInt = Integer.parseInt(age);
-            if (ageInt < 0) {
-                throw new NumberFormatException();
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid age (a positive integer).", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!isValidEmail(email)) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid email address.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (textBoxMsg.length() > 160) {
-            JOptionPane.showMessageDialog(this, "Message should not exceed 160 characters.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        String message = "First Name: " + firstName + "\n" +
-        "Last Name: " + lastName + "\n" +
-        "Age: " + age + "\n" +
-        "Email: " + email + "\n" +
-        "Message: " + textBoxMsg;
-
-        if (photoFilePath != null) {
-            ImageIcon photoIcon = new ImageIcon(photoFilePath);
-            ImageIcon scaledPhoto = new ImageIcon(photoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-            JOptionPane.showMessageDialog(this, message, "User Registration Successful", JOptionPane.INFORMATION_MESSAGE, scaledPhoto);
-        } else {
-            JOptionPane.showMessageDialog(this, message, "User Registration Successful", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_submitBtnActionPerformed
-
-        private boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        return email.matches(emailRegex);
-    }
     
-    private boolean isValidImageFormat(File file) {
-        String fileName = file.getName();
-        int dotIndex = fileName.lastIndexOf('.');
-        if (dotIndex == -1) {
-            return false;
-        }
-
-        String fileExtension = fileName.substring(dotIndex + 1).toLowerCase();
-        return fileExtension.equals("jpg") || fileExtension.equals("png") || fileExtension.equals("jpeg") || fileExtension.equals("gif");
-    }
-    
-    private boolean isValidName(String name) {
-        return !name.isEmpty() && name.matches("^[a-zA-Z]+$");
-    }
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -258,25 +161,6 @@ public class ViewPanel extends javax.swing.JPanel {
         });
     }
     
-    private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "jpeg", "gif");
-        fileChooser.setFileFilter(filter);
-
-        int result = fileChooser.showOpenDialog(this);
-
-        File selectedFile = fileChooser.getSelectedFile();
-        if (result == JFileChooser.APPROVE_OPTION) {
-            if (!isValidImageFormat(selectedFile)) {
-                JOptionPane.showMessageDialog(this, "Please select a valid image file (jpg, png, jpeg, gif).", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            photoFilePath = selectedFile.getAbsolutePath();
-
-            JOptionPane.showMessageDialog(this, "Photo uploaded successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_uploadBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ageLabel;
@@ -290,10 +174,24 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JTextField lastNameTxtField;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel msgLabel;
+    private javax.swing.JLabel photoDisplayLabel;
     private javax.swing.JLabel photoLabel;
-    private javax.swing.JButton submitBtn;
     private javax.swing.JTextArea textArea;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JButton uploadBtn;
     // End of variables declaration//GEN-END:variables
+
+    private void populateData() {
+        firstNameTxtField.setText(newUser.getFirstName());
+        lastNameTxtField.setText(newUser.getLastName());
+        ageTxtField.setText(newUser.getAge());
+        emailTxtField.setText(newUser.getEmail());
+        textArea.setText(newUser.getTextBoxMsg());
+        
+        String photoFilePath = newUser.getPhotoFilePath();
+        if (photoFilePath != null) {
+            ImageIcon photoIcon = new ImageIcon(photoFilePath);
+            ImageIcon scaledPhoto = new ImageIcon(photoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+            photoDisplayLabel.setIcon(scaledPhoto);
+        }
+    }
 }

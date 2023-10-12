@@ -103,7 +103,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
-        ViewPanel newViewPanel = new ViewPanel();   
+        ViewPanel newViewPanel = new ViewPanel(null);   
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
         bottomPanel.add(newViewPanel);
         layout.next(bottomPanel);

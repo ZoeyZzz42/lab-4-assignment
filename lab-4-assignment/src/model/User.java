@@ -14,6 +14,15 @@ public class User {
     private String age;
     private String email;
     private String textBoxMsg;
+    private String photoFilePath;
+
+    public String getPhotoFilePath() {
+        return photoFilePath;
+    }
+
+    public void setPhotoFilePath(String photoFilePath) {
+        this.photoFilePath = photoFilePath;
+    }
 
     public String getFirstName() {
         return firstName;
