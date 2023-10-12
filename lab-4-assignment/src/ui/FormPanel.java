@@ -28,6 +28,9 @@ public class FormPanel extends javax.swing.JPanel {
     public FormPanel(JPanel inputPanel) {
         initComponents();
         this.bottomPanel = inputPanel;
+        typeComboBox.addItem("Regular");
+        typeComboBox.addItem("Emergency");
+        typeComboBox.addItem("VIP");
     }
 
     private FormPanel() {
@@ -59,6 +62,8 @@ public class FormPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
         msgLabel = new javax.swing.JLabel();
+        typeLabel = new javax.swing.JLabel();
+        typeComboBox = new javax.swing.JComboBox<>();
 
         mainPanel.setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -96,6 +101,8 @@ public class FormPanel extends javax.swing.JPanel {
 
         msgLabel.setText("Message(<=160 characters)");
 
+        typeLabel.setText("Type");
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -106,27 +113,30 @@ public class FormPanel extends javax.swing.JPanel {
                 .addGap(225, 225, 225))
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(140, 140, 140)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(mainPanelLayout.createSequentialGroup()
-                            .addComponent(msgLabel)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(msgLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(mainPanelLayout.createSequentialGroup()
                             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(firstNameLabel)
                                 .addComponent(emailLabel)
                                 .addComponent(lastNameLabel)
                                 .addComponent(ageLabel)
-                                .addComponent(photoLabel))
+                                .addComponent(photoLabel)
+                                .addComponent(typeLabel))
                             .addGap(107, 107, 107)
                             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(firstNameTxtField)
                                 .addComponent(lastNameTxtField)
                                 .addComponent(ageTxtField)
                                 .addComponent(emailTxtField)
-                                .addComponent(uploadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)))))
+                                .addComponent(uploadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                                .addComponent(typeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(4, 4, 4))))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -154,10 +164,14 @@ public class FormPanel extends javax.swing.JPanel {
                     .addComponent(photoLabel)
                     .addComponent(uploadBtn))
                 .addGap(18, 18, 18)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(typeLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(msgLabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -166,13 +180,14 @@ public class FormPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -184,17 +199,13 @@ public class FormPanel extends javax.swing.JPanel {
         newUser.setEmail(emailTxtField.getText());
         newUser.setTextBoxMsg(textArea.getText());
         newUser.setPhotoFilePath(photoFilePath);
+        newUser.setPatientType((String) typeComboBox.getSelectedItem());
 
         String firstName = firstNameTxtField.getText();
         String lastName = lastNameTxtField.getText();
         String age = ageTxtField.getText();
         String email = emailTxtField.getText();
         String textBoxMsg = textArea.getText();
-        
-        ViewPanel newViewPanel = new ViewPanel(newUser);   
-        CardLayout layout = (CardLayout) bottomPanel.getLayout();
-        bottomPanel.add(newViewPanel);
-        layout.next(bottomPanel);
 
         if (firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all required fields.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -231,7 +242,7 @@ public class FormPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Message should not exceed 160 characters.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        
         String message = "First Name: " + firstName + "\n" +
         "Last Name: " + lastName + "\n" +
         "Age: " + age + "\n" +
@@ -245,6 +256,11 @@ public class FormPanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, message, "User Registration Successful", JOptionPane.INFORMATION_MESSAGE);
         }
+        
+        ViewPanel newViewPanel = new ViewPanel(newUser);   
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+        bottomPanel.add(newViewPanel);
+        layout.next(bottomPanel);
     }//GEN-LAST:event_submitBtnActionPerformed
 
         private boolean isValidEmail(String email) {
@@ -311,6 +327,8 @@ public class FormPanel extends javax.swing.JPanel {
     private javax.swing.JButton submitBtn;
     private javax.swing.JTextArea textArea;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JComboBox<String> typeComboBox;
+    private javax.swing.JLabel typeLabel;
     private javax.swing.JButton uploadBtn;
     // End of variables declaration//GEN-END:variables
 }

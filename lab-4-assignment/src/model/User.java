@@ -15,6 +15,15 @@ public class User {
     private String email;
     private String textBoxMsg;
     private String photoFilePath;
+    private String patientType;
+
+    public String getPatientType() {
+        return patientType;
+    }
+
+    public void setPatientType(String patientType) {
+        this.patientType = patientType;
+    }
 
     public String getPhotoFilePath() {
         return photoFilePath;
