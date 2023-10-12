@@ -101,7 +101,9 @@ public class FormPanel extends javax.swing.JPanel {
 
         msgLabel.setText("Message(<=160 characters)");
 
-        typeLabel.setText("Type");
+        typeLabel.setText("Type*");
+
+        typeComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -206,6 +208,7 @@ public class FormPanel extends javax.swing.JPanel {
         String age = ageTxtField.getText();
         String email = emailTxtField.getText();
         String textBoxMsg = textArea.getText();
+        String selectedType = (String) typeComboBox.getSelectedItem();
 
         if (firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all required fields.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -240,6 +243,11 @@ public class FormPanel extends javax.swing.JPanel {
 
         if (textBoxMsg.length() > 160) {
             JOptionPane.showMessageDialog(this, "Message should not exceed 160 characters.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (selectedType == null || selectedType.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a patient type.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
