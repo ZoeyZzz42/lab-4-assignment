@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import model.User;
 
 /**
  *
@@ -21,8 +22,14 @@ public class ViewPanel extends javax.swing.JPanel {
     /**
      * Creates new form FormPanel
      */
-    public ViewPanel() {
+    private User newUser;
+    public ViewPanel(User newUser) {
         initComponents();
+        this.newUser = newUser;
+    }
+
+    private ViewPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

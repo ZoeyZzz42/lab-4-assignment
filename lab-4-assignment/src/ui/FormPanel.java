@@ -4,12 +4,15 @@
  */
 package ui;
 
+import java.awt.CardLayout;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import model.User;
 
 /**
  *
@@ -21,8 +24,14 @@ public class FormPanel extends javax.swing.JPanel {
     /**
      * Creates new form FormPanel
      */
-    public FormPanel() {
+    private JPanel bottomPanel;
+    public FormPanel(JPanel bottomPanel) {
         initComponents();
+        this.bottomPanel = bottomPanel;
+    }
+
+    private FormPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -168,11 +177,17 @@ public class FormPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        User newUser = new User();
         String firstName = firstNameTxtField.getText();
         String lastName = lastNameTxtField.getText();
         String age = ageTxtField.getText();
         String email = emailTxtField.getText();
         String textBoxMsg = textArea.getText();
+        
+        ViewPanel newViewPanel = new ViewPanel(newUser);   
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+        bottomPanel.add(newViewPanel);
+        layout.next(bottomPanel);
 
         if (firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all required fields.", "Error", JOptionPane.ERROR_MESSAGE);
