@@ -214,11 +214,11 @@ public class FormPanel extends javax.swing.JPanel {
         int ageInt;
         try {
             ageInt = Integer.parseInt(age);
-            if (ageInt < 0) {
+            if (ageInt < 0 || ageInt > 150) {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid age (a positive integer).", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please enter a valid age.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
