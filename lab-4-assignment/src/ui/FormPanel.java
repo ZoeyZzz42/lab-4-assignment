@@ -242,7 +242,7 @@ public class FormPanel extends javax.swing.JPanel {
         newUser.setPatientType(selectedType);
         newUser.setGender(selectedGender);
 
-        if (firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || email.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || email.isEmpty() || selectedGender == null) {
             JOptionPane.showMessageDialog(this, "Please fill in all required fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -275,11 +275,6 @@ public class FormPanel extends javax.swing.JPanel {
 
         if (textBoxMsg.length() > 160) {
             JOptionPane.showMessageDialog(this, "Message should not exceed 160 characters.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if (selectedType == null || selectedType.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please select a patient type.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
