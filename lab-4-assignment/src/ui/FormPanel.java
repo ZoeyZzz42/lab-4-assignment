@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.User;
+import util.DatabaseConnector;
 
 /**
  *
@@ -240,7 +241,10 @@ public class FormPanel extends javax.swing.JPanel {
         newUser.setPhotoFilePath(photoFilePath);
         newUser.setPatientType(selectedType);
         newUser.setGender(selectedGender);
-
+        
+        DatabaseConnector dbConnector = new DatabaseConnector();
+        dbConnector.addUser(newUser);
+        
         if (firstName.isEmpty() || lastName.isEmpty() || age.isEmpty() || email.isEmpty() || selectedGender == null) {
             JOptionPane.showMessageDialog(this, "Please fill in all required fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
