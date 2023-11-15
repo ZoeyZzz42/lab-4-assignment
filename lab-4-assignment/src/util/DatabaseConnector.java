@@ -20,10 +20,7 @@ public class DatabaseConnector {
     public Connection connect() throws SQLException {
        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
-    
-    private DatabaseConnector() { 
-    }
-    
+      
     public void addUser (User user) {
         String query = "INSERT INTO users (firstName, lastName, age) VALUES (?, ?, ?)";
         try (Connection conn = connect(); 
