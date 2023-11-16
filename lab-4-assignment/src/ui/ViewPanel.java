@@ -19,16 +19,16 @@ public class ViewPanel extends javax.swing.JPanel {
      * Creates new form FormPanel
      */
     private User newUser;
-    private List<User> users;
     public ViewPanel(User newUser) {
         initComponents();
         this.newUser = newUser;
+        populateTable();
     }
 
     private ViewPanel() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,10 +60,7 @@ public class ViewPanel extends javax.swing.JPanel {
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "First Name", "Last Name", "Age"
@@ -182,26 +179,7 @@ public class ViewPanel extends javax.swing.JPanel {
     private void lastNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameFieldActionPerformed
-    
-    public void populateTable () {
-        try {
-            DatabaseConnector dbConnector = new DatabaseConnector();
-            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
-            this.users = dbConnector.getAllUsers();
-            model.setRowCount(0);
-            for (User u : users) {
-                Object[] row = new Object[4];
-                row[0] = u;
-                row[1] = u.getFirstName();
-                row[2] = u.getLastName();
-                row[3] = u.getAge();
-                model.addRow(row);
-            }
-            clearFields();
-        } catch (Exception e) {
-            
-        }
-    }
+
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -229,6 +207,26 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
 
+    public void populateTable () {
+        try {
+            DatabaseConnector dbConnector = new DatabaseConnector();
+            List<User> users = dbConnector.getAllUsers();
+            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+            model.setRowCount(0);
+            for (User u : users) {
+                Object[] row = new Object[4];
+                row[0] = u.getId();
+                row[1] = u.getFirstName();
+                row[2] = u.getLastName();
+                row[3] = u.getAge();
+                model.addRow(row);
+            }
+            clearFields();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+         
     private void clearFields() {
         firstNameField.setText("");
         lastNameField.setText("");

@@ -46,6 +46,7 @@ public class DatabaseConnector {
 
             while (rs.next()) {
                 User user = new User();
+                user.setId(rs.getInt("id"));
                 user.setFirstName(rs.getString("firstName"));
                 user.setLastName(rs.getString("lastName"));
                 user.setAge(rs.getString("age"));

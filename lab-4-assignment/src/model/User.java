@@ -17,6 +17,7 @@ public class User {
     private String photoFilePath;
     private String patientType;
     private String Gender;
+    private int id;
 
     public String getGender() {
         return Gender;
@@ -82,5 +83,12 @@ public class User {
         this.textBoxMsg = textBoxMsg;
     }
     
+    public int getId() {
+        return id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }
