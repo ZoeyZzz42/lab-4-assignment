@@ -58,4 +58,17 @@ public class DatabaseConnector {
         return users;
     }
     
+     public void deleteUser(int userId) {
+        String sql = "DELETE FROM users WHERE id = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, userId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
 }

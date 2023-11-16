@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.User;
 import util.DatabaseConnector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -83,6 +84,11 @@ public class ViewPanel extends javax.swing.JPanel {
         }
 
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setText("Edit");
 
@@ -180,6 +186,23 @@ public class ViewPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameFieldActionPerformed
 
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+
+        int selectedRow = userTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Please select a user to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // Row is selected, proceed with delete
+            int userIdToDelete = (Integer) userTable.getModel().getValueAt(selectedRow, 0);
+            deleteSelectedUser(userIdToDelete);
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void deleteSelectedUser(int userId) {
+        DatabaseConnector dbConnector = new DatabaseConnector();
+        dbConnector.deleteUser(userId);
+        populateTable();
+    }
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
