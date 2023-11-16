@@ -11,10 +11,10 @@
 *when submit button is clikced, the data gets stored in the database, and is reflected in the table, as you can see in the next pic*
 
 ## View Panel after Adding New User
-<img width="701" alt="image" src="https://github.com/ZoeyZzz42/lab-4-assignment/assets/145056570/8e3e7228-54ca-4776-8fbc-458eb9a5c713">
+<img width="700" alt="image" src="https://github.com/ZoeyZzz42/lab-4-assignment/assets/145056570/acb39466-6435-4cf9-b86e-d76ed28415a5">
 
 ## Database after Adding New User
-<img width="1024" alt="image" src="https://github.com/ZoeyZzz42/lab-4-assignment/assets/145056570/b288e6f4-c874-4709-9a81-dca1bec9e4ac">
+<img width="1024" alt="image" src="https://github.com/ZoeyZzz42/lab-4-assignment/assets/145056570/d64c69f2-f209-461b-95e6-5f76df21c381">
 
 ## View Panel after Deleting a User
 <img width="700" alt="image" src="https://github.com/ZoeyZzz42/lab-4-assignment/assets/145056570/ca3f63b0-fcaf-4fe0-8754-cbaed6635c2a">
