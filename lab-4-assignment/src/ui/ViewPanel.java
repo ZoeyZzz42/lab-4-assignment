@@ -4,9 +4,10 @@
  */
 package ui;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import model.User;
+import util.DatabaseConnector;
 
 /**
  *
@@ -18,6 +19,7 @@ public class ViewPanel extends javax.swing.JPanel {
      * Creates new form FormPanel
      */
     private User newUser;
+    private List<User> users;
     public ViewPanel(User newUser) {
         initComponents();
         this.newUser = newUser;
@@ -41,7 +43,7 @@ public class ViewPanel extends javax.swing.JPanel {
         titleLabel = new javax.swing.JLabel();
         photoDisplayLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
         deleteBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         firstNameLabel = new javax.swing.JLabel();
@@ -56,7 +58,7 @@ public class ViewPanel extends javax.swing.JPanel {
         titleLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         titleLabel.setText("View Panel");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -75,12 +77,12 @@ public class ViewPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(userTable);
+        if (userTable.getColumnModel().getColumnCount() > 0) {
+            userTable.getColumnModel().getColumn(0).setResizable(false);
+            userTable.getColumnModel().getColumn(1).setResizable(false);
+            userTable.getColumnModel().getColumn(2).setResizable(false);
+            userTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
         deleteBtn.setText("Delete");
@@ -181,6 +183,25 @@ public class ViewPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameFieldActionPerformed
     
+    public void populateTable () {
+        try {
+            DatabaseConnector dbConnector = new DatabaseConnector();
+            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+            this.users = dbConnector.getAllUsers();
+            model.setRowCount(0);
+            for (User u : users) {
+                Object[] row = new Object[4];
+                row[0] = u;
+                row[1] = u.getFirstName();
+                row[2] = u.getLastName();
+                row[3] = u.getAge();
+                model.addRow(row);
+            }
+            clearFields();
+        } catch (Exception e) {
+            
+        }
+    }
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -200,12 +221,18 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.ButtonGroup genderBtnGroup;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField lastNameField;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel photoDisplayLabel;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
+
+    private void clearFields() {
+        firstNameField.setText("");
+        lastNameField.setText("");
+        ageField.setText("");
+    }
 
 }
