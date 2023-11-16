@@ -15,7 +15,7 @@ import model.User;
  */
 public class DatabaseConnector {
     
-    private static final String URL = "jdbc:mysql://55000:3306/myconnection?useSSL=false";
+    private static final String URL = "jdbc:mysql://127.0.0.1:55000/test?useSSL=false";
     private static final String USER = "root";
     private static final String PASSWORD = "hallowelt";
     
@@ -56,7 +56,5 @@ public class DatabaseConnector {
         }
         return users;
     }
-    
-    
     
 }
