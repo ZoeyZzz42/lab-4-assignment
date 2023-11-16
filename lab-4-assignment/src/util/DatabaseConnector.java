@@ -5,6 +5,8 @@
 package util;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import model.User;
 
 /**
@@ -32,6 +34,27 @@ public class DatabaseConnector {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM users";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                User user = new User();
+                user.setFirstName(rs.getString("firstName"));
+                user.setLastName(rs.getString("lastName"));
+                user.setAge(rs.getString("age"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return users;
     }
     
     
