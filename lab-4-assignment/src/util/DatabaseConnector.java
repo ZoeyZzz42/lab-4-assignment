@@ -70,5 +70,21 @@ public class DatabaseConnector {
             System.out.println(e.getMessage());
         }
     }
+     
+     public void updateUser(int userId, String firstName, String lastName, String age) {
+        String sql = "UPDATE users SET firstName = ?, lastName = ?, age = ? WHERE id = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3, age);
+            pstmt.setInt(4, userId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     
 }
