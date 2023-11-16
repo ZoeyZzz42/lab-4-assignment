@@ -210,16 +210,29 @@ public class ViewPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+      
         if (editingUserId != -1) {
             String firstName = firstNameField.getText();
             String lastName = lastNameField.getText();
             String age = ageField.getText();
+            
+            int IntAge;
+            try {
+                IntAge = Integer.parseInt(age);
+                if (IntAge < 0 || IntAge > 120) {
+                    JOptionPane.showMessageDialog(null, "Invalid age. Please enter a valid age between 0 and 120.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid age. Please enter a numeric value.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             DatabaseConnector dbConnector = new DatabaseConnector();
             dbConnector.updateUser(editingUserId, firstName, lastName, age);
 
-            populateTable(); // Refresh the table
-            editingUserId = -1; // Reset the editingUserId
+            populateTable(); 
+            editingUserId = -1;
         } else {
             JOptionPane.showMessageDialog(null, "No user selected for editing.", "Error", JOptionPane.ERROR_MESSAGE);
         }
